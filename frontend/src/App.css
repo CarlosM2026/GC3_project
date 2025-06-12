@@ -1,0 +1,1460 @@
+/**
+ * CS-410: Base styles for the application
+ * @file app.css
+ * @authors Jun Cho, Will Cho, Grace Johnson, Connor Whynott
+ * @collaborators None
+ */
+
+/* ========================================
+   1. ROOT AND CONTAINER STYLES
+   ======================================== */
+
+   #root {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  /* Main container that wraps the entire application */
+  .enhanced-app-container {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background-color: #f5f7fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ========================================
+     2. HEADER STYLES
+     ======================================== */
+  
+  /* App header with logo and generate button */
+  .app-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    position: relative;
+  }
+  
+  .app-logo {
+    max-height: 100px;
+    width: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  /* Button positioned absolutely within the header */
+
+  .control-buttons {
+    position: absolute;
+    top: 39%;
+    right: 3%;
+    display: flex;
+    gap: 12px;             /* space between the two buttons */
+  }
+  
+  /* reuse your existing .generate-button rules by renaming them to a shared class: */
+/* reuse your dual-popup overlay/container styles */
+.dual-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dual-popup-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  
+  flex-direction: column;
+  align-items: stretch;
+  height: auto;
+}
+
+/* ensure buttons don’t stretch weirdly */
+.generate-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.generate-button:hover {
+  background-color: #0056b3;
+}
+
+/* checkbox label spacing */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+  /* .generate-button {
+    position: absolute;
+    top: 39%;
+    right: 3%;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generate-button:hover {
+    background-color: #0056b3;
+  } */
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .github-link {
+    margin-right: 15px;
+  }
+  
+  /* GitHub logo positioned absolutely in top-left of header */
+  .github-logo {
+    width: 32px;
+    height: 32px;
+    transition: opacity 0.2s;
+    top: 39%;
+    left: 3%;
+    position: absolute;
+  }
+  
+  .github-logo:hover {
+    opacity: 0.8;
+  }
+  
+  /* ========================================
+     3. LAYOUT STYLES
+     ======================================== */
+  
+  /* Flexbox layout for tabs arrangement */
+  .tab-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Horizontal layout for tab content */
+  .tab-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  .app-layout {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+  }
+  
+  /* Main content container */
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* ========================================
+     4. TAB NAVIGATION STYLES
+     ======================================== */
+  
+  /* Container for tab navigation  */
+  .tabs-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Tab button styling */
+  .tabs button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .tabs button.active {
+    background-color: #0056b3;
+    font-weight: bold;
+  }
+  
+  .tabs button:hover {
+    background-color: #0056b3;
+  }
+  
+  .tab-select {
+    background-color: white;
+    border-color: #ccc;
+    font-size: 1rem;
+  }
+  
+  .tab-select:focus {
+    outline: none;
+    border-color: #3182ce;
+  }
+  
+  
+  /* ========================================
+     5. COMPONENT CONTAINER STYLES
+     ======================================== */
+  
+    .flex-wrapper {
+    display: flex;
+    gap: 1rem; /* spacing between containers */
+    align-items: stretch; /* makes all children same height */
+  }
+
+  /* Left sidebar for statistics display */
+  .statistics-container {
+    width: 30%;
+    min-width: 250px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* Right side container for file handling */
+  .file-handle-container {
+    flex-grow: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
+  }
+
+  /* Status notification bar */
+  .status-banner {
+    background-color: #eaf6ff;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #2c82c9;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* ========================================
+     6. FILE HANDLING STYLES
+     ======================================== */
+  
+  .file-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .file-input {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    display: none;
+  }
+  
+  .custom-file-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    background-color: #f8f9fa;
+    color: #495057;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    border: 2px dashed #dee2e6;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .custom-file-upload::before {
+    content: "📁";
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
+  .custom-file-upload:hover {
+    color: #007bff;
+    background-color: #e9ecef;
+    border-color: #007bff;
+  }
+  
+  .file-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .file-name {
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    max-width: none;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-all;
+  }
+  
+  .file-actions, .saved-files-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* ========================================
+     7. SAVED FILES STYLES
+     ======================================== */
+  
+  /* Container for saved files */
+  .saved-files {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  /* Non-scrolling header that stays fixed at top */
+  .saved-files-header {
+    padding: 1rem 1.5rem 0.5rem;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  
+  /* Scrollable list container */
+  .saved-files ul {
+    list-style-type: none;
+    padding: 0.5rem 1.5rem;
+    margin: 0;
+    overflow-y: auto;
+    flex-grow: 1; 
+  }
+  
+  .saved-files li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    max-width: 100%;
+  }
+  
+  .saved-files button {
+    background-color: #fd7e14;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .saved-files button:hover {
+    background-color: #e06c10;
+  }
+  
+  .saved-files button:active {
+    background-color: #c75c0a;
+  }
+  
+  .saved-files .delete-btn {
+    background-color: red;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .saved-files .delete-btn:hover {
+    background-color: darkred;
+  }
+  
+  .file-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+  }
+  
+  .file-item:last-child {
+    border-bottom: none;
+  }
+  
+  .no-files {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+  }
+  
+  .search-bar {
+    width: 100%; 
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Fixed search bar area that doesn't scroll */
+  .search-container {
+    padding: 0.5rem 1.5rem 1rem;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  
+  .search-bar:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  .trash-icon {
+    width: 16px;
+    height: 16px;
+    filter: invert(100%);
+  }
+  
+  /* ========================================
+     8. BUTTON STYLES
+     ======================================== */
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .airview-btn {
+    background-color: #cc0005;
+    color: white;
+  }
+  .airview-btn:hover {background-color: #d52727;}
+
+  .upload-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  .upload-btn:hover { background-color: #45a049; }
+  
+  .save-btn {
+    background-color: #2196f3;
+    color: white;
+  }
+  .save-btn:hover { background-color: #1976d2; }
+  
+  .load-btn {
+    background-color: #ffa500;
+    color: white;
+  }
+  .load-btn:hover { background-color: #e69500; }
+  
+  .clear-files-btn {
+    background-color: #FFA500;
+    color: white;
+  }
+  .clear-files-btn:hover { background-color: #FF8C00; }
+  
+  /* ========================================
+     9. TEXT AND MESSAGE STYLES
+     ======================================== */
+  
+  .statistics-header {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .error-message {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #e74c3c;
+  }
+  
+  .metadata-display {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .no-file-message {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .loading-message,
+  .no-file-message {
+    color: #7f8c8d;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+  
+  .single-error-message {
+    color: #cc0000;
+    font-size: 14px;
+    margin: 5px 0 10px;
+    padding: 5px 10px;
+    background-color: rgba(255, 0, 0, 0.05);
+    border-left: 3px solid #cc0000;
+    border-radius: 2px;
+  }
+  
+  /* ========================================
+     10. METADATA DISPLAY STYLES
+     ======================================== */
+  
+  .metadata-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .metadata-section {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1 1 45%;
+    min-width: 300px;
+    box-sizing: border-box;
+  }
+  
+  .section-title {
+    color: #34495e;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+  }
+  
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .metadata-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ecf0f1;
+  }
+  
+  .metadata-key {
+    font-weight: 600;
+    color: #7f8c8d;
+  }
+  
+  .metadata-value {
+    color: #2c3e50;
+    text-align: right;
+    font-size: 0.9rem;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+  
+  /* ========================================
+     11. POPUP AND MODAL STYLES
+     ======================================== */
+  
+  /* Full-screen overlay for popups */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Container for side-by-side popup windows */
+  .dual-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Popup content area */
+  .popup-content, .spectrogram-popup-content {
+    background-color: #fff;
+    padding: 25px;
+    padding-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 999;
+    height: 80vh !important;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .popup-content h4 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .dual-popup-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    max-height: 90vh;
+    max-width: 95vw;
+    padding: 20px;
+  }
+  
+  .generate-popup-section {
+    flex: 0 0 auto;
+    position: relative;
+  }
+  
+  .spectrogram-popup-section {
+    flex: 0 0 auto;
+    position: relative;
+  }
+  
+  .spectrogram-popup-content {
+    width: 700px !important;
+    min-width: 700px;
+    max-width: 95%;
+    max-height: 90vh;
+    padding-top: 15px;
+  }
+  
+  .popup-header, .spectrogram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    position: relative;
+    height: 35px;
+  }
+  
+  .popup-header h4, .spectrogram-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    padding-right: 30px;
+    height: 24px;
+    line-height: 24px;
+  }
+  
+  .spec-close-button {
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    margin: 0;
+    padding: 0;
+  }
+
+  .data-close-button {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    position: absolute;
+    top: -3px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    margin: 0;
+    padding: 0;
+  }
+
+  .download-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+  }
+
+  .download-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .download-btn:hover {
+    background-color: #218838;
+  }
+
+  .download-btn::before {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
+  /* ========================================
+     12. FORM STYLES
+     ======================================== */
+  
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .popup-content label {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+  }
+  
+  .popup-content input {
+    margin-left: 10px;
+  }
+  
+  .popup-content input[type="number"] {
+    width: 150px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .popup-content button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  fieldset {
+    border: 1px solid #ccc;
+    padding: 3px;
+    margin-bottom: 10px;
+    padding-right: 10px
+  }
+  
+  legend {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="radio"] {
+    margin-right: px;
+  }
+  
+  /* ========================================
+     13. SPECTROGRAM AND IMAGE STYLES
+     ======================================== */
+  
+  .spectrogram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .spectrogram-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    max-height: 74vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  
+  .spectrogram-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transform: scale(1.16);
+  }
+  
+  .spectrogram-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 2px solid #e0e0e0;
+  }
+  
+  .plot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  
+  /* ========================================
+     14. RESPONSIVE STYLES
+     ======================================== */
+  
+  @media (max-width: 1200px) {
+    .dual-popup-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .generate-popup-section, .spectrogram-popup-section {
+      width: 95%;
+      margin-bottom: 20px;
+    }
+    
+    .popup-content, .spectrogram-popup-content {
+      width: 90%;
+      min-width: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .metadata-container {
+      flex-direction: column;
+    }
+  
+    .metadata-section {
+      flex: 1 1 100%;
+    }
+  }
+
+  /* container for the two vertical switches + params box */
+  .switch-panel {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  /* stack the two on/off switches */
+  .toggle-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+  }
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 24px;
+  }
+  .toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px; width: 18px;
+    left: 1px; bottom: 1px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+  }
+  .toggle-switch input:checked + .slider {
+    background-color: #4caf50;
+  }
+  .toggle-switch input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+    
+    /* style for the params fieldset */
+  .param-box {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    min-width: 200px;
+  }
+  .param-box legend {
+    font-size: 0.9rem;
+  }
+  .param-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .param-form input[type="number"] { width: 4ch; padding: 2px 4px; }
+
+  /* ========================================
+    15. CURSOR STYLES
+    ======================================== */
+
+    .spectrogram-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .vertical-cursor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: red;
+    cursor: ew-resize;
+  }
+
+  .horizontal-cursor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: red;
+    cursor: ns-resize;
+  }
+
+  .plot-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cursor-label {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .vertical-cursor .cursor-label {
+    position: absolute;
+    top: 0px; /* Adjust this value to move the label slightly lower */
+    left: -50%; /* Center the label horizontally */
+    transform: translateX(-50%);
+    padding: 2px 4px; /* Optional: Add padding for better readability */
+    font-size: 12px; /* Adjust font size if needed */
+    border-radius: 4px; /* Optional: Add rounded corners */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better contrast */
+  }
+
+  .horizontal-cursor .cursor-label {
+    left: -50px; /* Position to the left of the horizontal cursor */
+    top: 50%;
+    transform: translateY(-50%);
+    left:0px
+  }
+
+  /* ========================================
+    16. ANNOTATION CONTAINER
+    ======================================== */
+
+  .annotations-container {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 20px; /* Add space above the annotations container */
+    margin-bottom: 30px; /* Add space below the annotations container */
+  }
+
+  .annotations-container h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .annotations-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .annotation-creation-box {
+    background-color: #eaeaea; /* Slightly darker background */
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px; /* Space between the red box and inputs */
+    align-items: flex-start; /* Align items at the top */
+  }
+
+  /* Red-bordered rectangle for annotation preview */
+  .annotation-preview {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    border: 2px solid red;
+  }
+
+  /* Corner labels for the red-bordered rectangle */
+  .corner-label {
+    position: absolute;
+    font-size: 8px;
+    background-color: white;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .corner-label.top-left {
+    top: -10px;
+    left: -10px;
+  }
+
+  .corner-label.top-right {
+    top: -10px;
+    right: -10px;
+  }
+
+  .corner-label.bottom-left {
+    bottom: -10px;
+    left: -10px;
+  }
+
+  .corner-label.bottom-right {
+    bottom: -10px;
+    right: -10px;
+  }
+
+  /* Inputs and Button Layout */
+  .annotation-inputs {
+    display: flex;
+    flex: 1;
+    gap: 10px; /* Space between inputs and the button */
+  }
+
+  .inputs-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Take up available space */
+    gap: 10px; /* Space between label and comment inputs */
+  }
+
+  .annotation-label-input {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .annotation-label-input,
+  .annotation-comment-input {
+    font-family: Arial, sans-serif; /* Set a consistent font */
+    font-size: 14px; /* Set a consistent font size */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333; /* Ensure consistent text color */
+  }
+
+  .annotation-label-input::placeholder,
+  .annotation-comment-input::placeholder {
+    font-family: Arial, sans-serif; /* Match the font for placeholders */
+    font-size: 14px; /* Match the font size for placeholders */
+    color: #888; /* Optional: Set a placeholder color */
+  }
+
+  .create-annotation-btn {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start; /* Align button to the top */
+  }
+
+  .annotation-box {
+    position: absolute;
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.2); /* Optional: Add a semi-transparent background */
+    pointer-events: none; /* Allow mouse events to pass through */
+  }
+
+  .annotation-label {
+    pointer-events: auto; /* Optional: If you want the label to remain interactive */
+  }
+
+  .create-annotation-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Saved Annotations Section */
+  .saved-annotations-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .saved-annotations-container h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Annotations Table */
+  .annotations-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .annotations-table th,
+  .annotations-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .annotations-table th {
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .annotations-table td {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .delete-annotation-btn {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .delete-annotation-btn:hover {
+    background-color: #c82333;
+  }
+
+  .annotations-table th,
+  .annotations-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .annotations-table th {
+    background-color: #f9f9f9;
+    color: #555;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  .annotations-table td {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .annotations-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .toggle-cursors {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #007bff;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  .annotation-comment-row {
+    background-color: #f9f9f9;
+  }
+
+  .annotation-comment-cell {
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .expand-comment-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #007bff;
+  }
+
+  .expand-comment-btn:hover {
+    color: #0056b3;
+  }
+
+
+
+  .detected-transmission {
+    position: absolute;
+    border: 2px solid blue;
+    background-color: rgba(0, 0, 255, 0.2);
+    pointer-events: none; 
+  }
+
+  .transmission-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #007bff;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
