@@ -62,8 +62,7 @@
     gap: 12px;             /* space between the two buttons */
   }
   
-  /* reuse your existing .generate-button rules by renaming them to a shared class: */
-/* reuse your dual-popup overlay/container styles */
+/* reuse your existing .generate-button rules by renaming them to a shared class: */
 .dual-popup-overlay {
   position: fixed;
   top: 0;

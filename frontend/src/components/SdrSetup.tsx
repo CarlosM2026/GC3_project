@@ -62,8 +62,6 @@ const SdrSetup: React.FC<SdrSetupProps> = ({ onConfig }) => {
                       required
                     />
                   </label>
-                  {/* <label>
-                    Radio buttons: */}
                     <label>
                       <input type="radio" name="myUSRP" value="USRP" onChange={e => setType(e.target.value)}/>
                       USRP
@@ -76,16 +74,6 @@ const SdrSetup: React.FC<SdrSetupProps> = ({ onConfig }) => {
                       <input type="radio" name="myHackRF" value="HackRF" onChange={e => setType(e.target.value)}/>
                       HackRF
                     </label>
-                  {/* </label> */}
-                  {/* <label>
-                    SDR Type:
-                    <input
-                      type="text"
-                      value={type}
-                      onChange={e => setType(e.target.value)}
-                      required
-                    />
-                  </label> */}
                   <label className="checkbox-label">
                     <input
                       type="checkbox"
